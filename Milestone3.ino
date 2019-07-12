@@ -104,8 +104,8 @@ void generateTerrain() {
     lcd.write(byte(4));
   }
   lcd.write(byte(5));
-  if ((26+blockonelength+blocktwolength+blockthreelength) > 38) {
-    blockthreelength = 2;   // might have to change up this value and for the if statement.
+  if ((26+blockonelength+blockonespacing+blocktwospacing+blocktwolength+blockthreelength) > 38) {
+    blockthreelength = (12-blockonelength-blockonespacing-blocktwospacing-blocktwolength);   // might have to change up this value and for the if statement.
   }
   lcd.setCursor((26+blockonelength+blockonespacing+blocktwolength+blocktwospacing), blockthreeheight);
   lcd.write(byte(3));
@@ -514,7 +514,12 @@ void loop() {
   if (score >= 100) {
     scoredigits = 3;
   }
+  if (speed >200) {
+    speed = startingspeed -5*score;
+  }
+  if (speed < 200) {
   speed = startingspeed - 2*score;
+  }
   if (speed <= 100) {
     speed = 100;
   }
